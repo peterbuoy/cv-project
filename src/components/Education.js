@@ -1,15 +1,11 @@
 import '../styles/Education.css'
 
-const Education = (props) => {
-  return (
+const Education = (props) => 
     <div className="education">
-      Education
       <span>{props.education.name}</span>
       <span>
         {props.education.degree} {props.education.field}, {props.education.gradYear}
       </span>
-    </div>
-  )
-}
+    </div>;
 
 export { Education }

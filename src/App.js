@@ -1,5 +1,6 @@
 import  React from 'react';
 import {v4 as uuidv4} from 'uuid';
+import './styles/App.css'
 import { Contact } from './components/Contact.js';
 import { Education } from './components/Education.js';
 import { Experience } from './components/Experience.js'
@@ -9,9 +10,9 @@ class App extends React.Component {
     super(props)
     this.state = {
       contact: {
-        name: "Peter",
-        email: "peter@gmail.com",
-        number: "123-456-7890",
+        name: "name",
+        email: "email",
+        number: "phone number",
       },
       education: {
         name: "Technical Center P",
@@ -38,11 +39,23 @@ class App extends React.Component {
         },
       ],
     };
+    this.handleNameChange = this.handleNameChange.bind(this);
   }
+  handleNameChange = ( event ) => {
+    console.log('aaaaaaa');
+    event.preventDefault();
+    //let contact = {...this.state.contact};
+    // use spread or something lol?
+    this.setState({contact: {name: event.target.value}})
+  };
 
   render() {
     return (
-      <div>
+      <div class="app">
+        <form>
+          Name:
+          <input name="name" type="text" onChange={this.handleNameChange} />
+        </form>
         <Contact contact={this.state.contact} />
         <Education education={this.state.education} />
         <Experience experiences={this.state.experiences} />
