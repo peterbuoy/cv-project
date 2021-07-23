@@ -1,8 +1,29 @@
-.app > form > input {
+/* form > input {
   border: none;
+} */
+
+form {
+	display: flex;
+	flex-direction: column;
+	margin: 0 15px 15px;
+	border-radius: 15px;
+	padding: 10px;
+	border: 1px solid black;
+}
+
+.form-header {
+	text-align: center;
+}
+
+div>button {
+ 
 }
 
 .Resizer.vertical {
-	width: 5px;
-	background-color: rgba(109, 98, 98, 0.61);
+	background-color: pink;
+  width: 5px;
+  margin: 5px;
+  border-left: 1px solid rgb(24, 2, 2);
+  border-right: 1px solid rgba(24, 2, 2);
+  cursor: col-resize;
 }

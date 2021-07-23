@@ -1,8 +1,9 @@
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
+import SplitPlane from "react-split-pane";
 import "./styles/App.css";
-import { ContactForm } from "./components/ContactForm.js";
-import { EducationForms } from "./components/EducationForms.js";
+import { ContactForm } from "./components/ContactForm";
+import { EducationFormList } from "./components/EducationFormList";
+import { ExperienceFormList } from "./components/ExperienceFormList";
 
 class App extends React.Component {
   constructor(props) {
@@ -12,8 +13,14 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <ContactForm />
-        <EducationForms />
+        <SplitPlane split="vertical" minSize={600}>
+          <div id="input-pane">
+            <ContactForm />
+            <EducationFormList />
+            <ExperienceFormList />
+          </div>
+          <div className="preview-pane"></div>
+        </SplitPlane>
       </div>
     );
   }
