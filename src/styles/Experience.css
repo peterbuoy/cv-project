@@ -1,5 +1,4 @@
 .experience span {
   display: flex;
   flex-direction: column;
-  background-color: red;
 }

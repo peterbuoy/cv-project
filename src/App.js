@@ -1,5 +1,6 @@
 import  React from 'react';
 import {v4 as uuidv4} from 'uuid';
+import SplitPane from 'react-split-pane'
 import './styles/App.css'
 import { Contact } from './components/Contact.js';
 import { Education } from './components/Education.js';
@@ -39,26 +40,46 @@ class App extends React.Component {
         },
       ],
     };
-    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleContactChange = this.handleContactChange.bind(this);
   }
-  handleNameChange = ( event ) => {
-    console.log('aaaaaaa');
+  handleContactChange = ( event ) => {
     event.preventDefault();
-    //let contact = {...this.state.contact};
-    // use spread or something lol?
-    this.setState({contact: {name: event.target.value}})
-  };
+		console.log(`change detected in ${event.target.name}`);
+		// There HAS to be a better way to do deal with nested state. This is the top voted answer on stackoverflow
+		// https://stackoverflow.com/questions/43040721/how-to-update-nested-state-properties-in-react
+		// Almost all of the other answers tell you to mutate state directly while using setState,
+		// which react explicitly warns about in the documentation LMAO
+    this.setState( (state) => ({
+			...state,
+			contact: {
+				...state.contact,
+				[event.target.name]: event.target.value,
+			}
+		}));
+  }
 
   render() {
     return (
-      <div class="app">
-        <form>
-          Name:
-          <input name="name" type="text" onChange={this.handleNameChange} />
-        </form>
-        <Contact contact={this.state.contact} />
-        <Education education={this.state.education} />
-        <Experience experiences={this.state.experiences} />
+      <div className="app">
+        <SplitPane props={this.state} split="vertical" minSize={600}>
+					<form>
+						<label htmlFor="name">Name
+							<input name="name" type="text" onChange={this.handleContactChange} />
+						</label>
+						<label htmlFor="email">Email
+							<input name="email" type="text" onChange={this.handleContactChange} />
+						</label>
+						<label htmlFor="number">Number
+							<input name="number" type="text" onChange={this.handleContactChange} />
+						</label>
+					</form>
+					<div className="display">
+						<Contact contact={this.state.contact} />
+						<Education education={this.state.education} />
+						<Experience experiences={this.state.experiences} />
+					</div>
+				</SplitPane>
+				
       </div>
     )
   }

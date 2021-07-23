@@ -1,3 +1,8 @@
 .app > form > input {
   border: none;
 }
+
+.Resizer.vertical {
+	width: 5px;
+	background-color: rgba(109, 98, 98, 0.61);
+}
